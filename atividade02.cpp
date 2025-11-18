@@ -114,6 +114,7 @@ int main()
         categorias.insert(produto.getCategoria());
     }
 
+    // quantidade de produtos por categoria
     map<string, int> contagem;
     { // percorrendo as categorias
         for (const string& categoria : categorias){
@@ -121,7 +122,7 @@ int main()
             // percorrendo a lista de produtos para cada categoria e incrementando valor
             for (const Produtos& produto : Loja){
                 if (produto.getCategoria() == categoria){
-                    ++valor;
+                    valor += valor * produto.getEstoque();
                 }
             }
             contagem[categoria] = valor;
@@ -129,7 +130,22 @@ int main()
         
     }
 
+    // valor em estoque por categoria
     map<string, double> valor_estoque;
+    {
+        // percorrendo as categorias
+        for (const string& categoria : categorias){
+            int total = 0;
+            //percorrendo os produtos para cada categoria 
+            for (const Produtos& produto : Loja){
+                //se o produto pertence a categoria soma o produto da quantidadem em estoque pelo preço no total
+                if (produto.getCategoria()==categoria){
+                    total += produto.getEstoque()*produto.getPreco(); 
+                }
+            }
+            valor_estoque[categoria] = total;
+        }
+    }
 
     list<Produtos> historico;
 
