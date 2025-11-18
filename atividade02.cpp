@@ -66,14 +66,19 @@ void adicionar_produto(vector<Produtos>& lista, Produtos p1){
 
 //método para buscar produto por nome
 void buscar(const vector<Produtos>& lista, string nome){
-
+    bool encontrado;
     //loop por indice ao invés de range-based pra poder pegar o indice e usar o exibir()
     for (int i = 0; i < lista.size(); i++){
         string nameProd = lista[i].getNome();
         if(nameProd == nome){
             cout << nome << " está listado nos produtos." << endl;
             lista[i].exibir();
-        }else{cout << nome << " não está na lista de produtos." << endl;}
+            encontrado = true;
+        }
+    }
+
+    if (!encontrado){
+        cout << nome << " não está na lista de produtos." << endl;
     }
 }
 
