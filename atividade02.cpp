@@ -96,10 +96,11 @@ void listar_produtos(vector<Produtos> lista, string categoria){
 
 // método para calcular total
 void calcTotal(vector<Produtos> lista){
-    int total = 0;
+    double total = 0;
     for (const Produtos& produto : lista){
-        
+        total += produto.getEstoque()*produto.getPreco();
     }
+    cout << "valor total no inventário da loja: " << total << endl;
 }
 
 int main()
@@ -127,7 +128,6 @@ int main()
         }
         
     }
-    
 
     map<string, double> valor_estoque;
 
