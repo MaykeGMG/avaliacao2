@@ -135,7 +135,7 @@ int main()
     {
         // percorrendo as categorias
         for (const string& categoria : categorias){
-            int total = 0;
+            double total = 0;
             //percorrendo os produtos para cada categoria 
             for (const Produtos& produto : Loja){
                 //se o produto pertence a categoria soma o produto da quantidadem em estoque pelo preço no total
