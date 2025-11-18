@@ -8,18 +8,22 @@
 #include <algorithm>
 using namespace std;
 
+//classe Produtos
 class Produtos{
 private:
 
     string nome;
     double preco;
     int estoque;
+    string categoria;
 
 public:
     //construtores
-    Produtos() : nome(""), preco(0), estoque(0){}
+    Produtos() : nome(""), preco(0), estoque(0), categoria(""){}
 
-    Produtos(string n, double p, int e) : nome(n), preco(p), estoque(e){}
+    Produtos(string n, double p, int e) : nome(n), preco(p), estoque(e), categoria(""){}
+
+    Produtos(string n, double p, int e, string c) : nome(n), preco(p), estoque(e), categoria(c){}
 
     //getters
     string getNome() const{
@@ -30,6 +34,14 @@ public:
     }
     int getEstoque() const{
         return estoque;
+    }
+    string getCategoria() const{
+        return categoria;
+    }
+
+    //setter para a categoria do produto
+    void setCategoria(string c){
+        categoria = c;
     }
 
     //operator <
@@ -43,7 +55,7 @@ public:
     }
 
     void exibir() const{
-        cout << nome + ", " + to_string(estoque) + " em estoque, preço: " + to_string(preco) + "\n" << endl;;
+        cout << nome + ", " + to_string(estoque) + " em estoque, preço: " + to_string(preco) << endl;;
     }
 };
 
@@ -65,7 +77,22 @@ void buscar(const vector<Produtos>& lista, string nome){
     }
 }
 
+//método para listar todos produtos de uma categoria
+void listar_produtos(vector<Produtos> lista, string categoria){
+    vector<string> produtos;
 
+    //loop com range-based percorrendo a listae salvando o nome dos produtos que pertencem à mesma categoria
+    for (const Produtos& produto : lista){
+        if(produto.getCategoria() == categoria){
+            produtos.push_back(produto.getNome());
+        }
+    }
+
+    for (int i = 0; i < produtos.size(); i++){
+        cout << produtos[i] << " ";
+    }
+    cout << endl;
+}
 
 int main()
 {
@@ -74,6 +101,9 @@ int main()
     vector<Produtos> Loja;
 
     set<string> categorias;
+    for (Produtos& produto : Loja){
+        categorias.insert(produto.getCategoria());
+    }
 
     map<string, int> contagem;
 
