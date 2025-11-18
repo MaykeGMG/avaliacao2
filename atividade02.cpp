@@ -94,6 +94,14 @@ void listar_produtos(vector<Produtos> lista, string categoria){
     cout << endl;
 }
 
+// método para calcular total
+void calcTotal(vector<Produtos> lista){
+    int total = 0;
+    for (const Produtos& produto : lista){
+        
+    }
+}
+
 int main()
 {
     setlocale(LC_ALL, "Portuguese");
@@ -101,11 +109,25 @@ int main()
     vector<Produtos> Loja;
 
     set<string> categorias;
-    for (Produtos& produto : Loja){
+    for (const Produtos& produto : Loja){
         categorias.insert(produto.getCategoria());
     }
 
     map<string, int> contagem;
+    { // percorrendo as categorias
+        for (const string& categoria : categorias){
+            int valor = 0;
+            // percorrendo a lista de produtos para cada categoria e incrementando valor
+            for (const Produtos& produto : Loja){
+                if (produto.getCategoria() == categoria){
+                    ++valor;
+                }
+            }
+            contagem[categoria] = valor;
+        }
+        
+    }
+    
 
     map<string, double> valor_estoque;
 
