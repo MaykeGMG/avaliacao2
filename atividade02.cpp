@@ -127,7 +127,7 @@ int main()
             // percorrendo a lista de produtos para cada categoria e incrementando valor
             for (const Produtos& produto : Loja){
                 if (produto.getCategoria() == categoria){
-                    valor += valor * produto.getEstoque();
+                    ++valor;
                 }
             }
             contagem[categoria] = valor;
